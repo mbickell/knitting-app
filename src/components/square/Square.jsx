@@ -3,7 +3,11 @@ import styles from "./Square.module.scss";
 
 const Square = props => {
   return (
-    <span className={styles.square} style={{ backgroundColor: props.type }}>
+    <span
+      className={styles.square}
+      style={{ backgroundColor: props.type }}
+      onClick={() => props.removeCell(props.index)}
+    >
       {props.type.length > 1 ? null : props.type}
     </span>
   );

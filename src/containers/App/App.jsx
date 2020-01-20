@@ -7,8 +7,6 @@ const App = () => {
   const [input, setInput] = useState("");
   const [chartSource, setChartSource] = useState([]);
 
-  let chart = chartSource.map(cell => <Square type={cell} />);
-
   const addValueToChart = event => {
     // Take input value from input and add it to chartSource array
     event.preventDefault();
@@ -16,6 +14,25 @@ const App = () => {
     modifiedSource.push(input);
     setChartSource(modifiedSource);
   };
+
+  const removeValueFromChart = key => {
+    let modifiedSource = [...chartSource];
+    modifiedSource[key] = "";
+    console.log(modifiedSource);
+    setChartSource(modifiedSource);
+  };
+
+  let chart = chartSource.map((cell, index) =>
+    cell ? (
+      <Square
+        type={cell}
+        key={index}
+        index={index}
+        removeCell={removeValueFromChart}
+      />
+    ) : null
+  );
+
   return (
     <>
       <div className={styles.chart}>{chart}</div>
