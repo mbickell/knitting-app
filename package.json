@@ -20,7 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "make": "@powershell ./scripts/makeReactComponent.ps1",
+    "create-container": "cd src; cd containers; md temp; cd temp; New-Item Temp.jsx, Temp.module.scss, Temp.test.js -ItemType File; cd ......"
   },
   "eslintConfig": {
     "extends": "react-app"
