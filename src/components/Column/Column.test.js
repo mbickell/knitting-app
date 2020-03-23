@@ -1,7 +1,7 @@
 import React from "react";
-import App from "./App";
+import Column from "./Column";
 
-describe("App tests", () => {
+describe("Column tests", () => {
   let component;
 
   beforeEach(() => {

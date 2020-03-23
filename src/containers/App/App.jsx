@@ -1,50 +1,29 @@
 import React, { useState } from "react";
 import styles from "./App.module.scss";
 
-import Square from "../../components/square/Square";
+import Column from "../../components/Column";
 
 const App = () => {
-  const [input, setInput] = useState("");
-  const [chartSource, setChartSource] = useState([]);
+  const [columns, setColumns] = useState(0);
+  const [grid, setGrid] = useState([]);
 
-  const addValueToChart = event => {
-    // Take input value from input and add it to chartSource array
-    event.preventDefault();
-    let modifiedSource = [...chartSource];
-    modifiedSource.push(input);
-    setChartSource(modifiedSource);
+  const generateGridArray = () => {
+    const grid = [];
+    for (let i = 0; i < columns; i++) {
+      grid.push([]);
+    }
+    setGrid(grid);
   };
 
-  const removeValueFromChart = key => {
-    let modifiedSource = [...chartSource];
-    modifiedSource[key] = "";
-    console.log(modifiedSource);
-    setChartSource(modifiedSource);
+  const generateColumns = () => {
+    generateGridArray();
   };
-
-  let chart = chartSource.map((cell, index) =>
-    cell ? (
-      <Square
-        type={cell}
-        key={index}
-        index={index}
-        removeCell={removeValueFromChart}
-      />
-    ) : null
-  );
 
   return (
     <>
-      <div className={styles.chart}>{chart}</div>
-      <form onSubmit={addValueToChart}>
-        <input
-          type="text"
-          value={input}
-          onChange={event => setInput(event.target.value.toLowerCase())}
-          id="cell"
-        />
-        <button type="submit">Add Cell</button>
-      </form>
+      <input type="number" onChange={event => setColumns(parseInt(event.target.value))} value={columns} />
+      <button onClick={() => generateColumns()}>generate columns</button>
+      <Column grid={grid} />
     </>
   );
 };
