@@ -3,11 +3,11 @@ import styles from "./Column.module.scss";
 
 import Square from "../Square";
 
-const Column = ({ grid }) => {
+const Column = ({ grid, color }) => {
   return (
     <>
-      {grid.map(cell => (
-        <Square type={"white"} />
+      {grid.map(type => (
+        <Square type={type} newColor={color} />
       ))}
     </>
   );

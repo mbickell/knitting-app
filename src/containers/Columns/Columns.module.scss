@@ -1,0 +1,17 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+
+  p {
+    text-align: center;
+  }
+  &:nth-child(2n) p {
+    margin-top: 20px;
+  }
+
+  .marker {
+    height: 20px;
+    font-size: 0.9em;
+  }
+}
