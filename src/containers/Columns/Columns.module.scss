@@ -5,13 +5,17 @@
 
   p {
     text-align: center;
+    font-size: 0.9em;
   }
   &:nth-child(2n) p {
     margin-top: 20px;
   }
-
+}
+div {
   .marker {
     height: 20px;
     font-size: 0.9em;
+    text-align: center;
+    margin-right: 5px;
   }
 }
