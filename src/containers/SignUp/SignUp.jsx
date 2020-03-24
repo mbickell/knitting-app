@@ -21,8 +21,8 @@ const SignUp = () => {
         })
         .catch(error => {
           // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
+          const errorCode = error.code;
+          const errorMessage = error.message;
           console.log("error code ", errorCode);
           console.log("error message ", errorMessage);
         });

@@ -10,6 +10,7 @@ const App = () => {
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
   const [color, setColor] = useState("#ffffff");
+  const [user, setUser] = useState(null);
 
   const [grid, setGrid] = useState([[]]);
 
@@ -28,7 +29,7 @@ const App = () => {
   return (
     <>
       <SignUp />
-      <Login />
+      <Login user={user} setUser={setUser} />
 
       <Input type="number" callback={event => setColumns(parseInt(event.target.value))} value={columns} />
       <Input type="number" callback={event => setRows(parseInt(event.target.value))} value={rows} />
