@@ -1,0 +1,14 @@
+.dashboard {
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .grid {
+    display: flex;
+    margin-top: 10px;
+    max-width: 100%;
+    justify-content: center;
+    // width: 80vw;
+  }
+}

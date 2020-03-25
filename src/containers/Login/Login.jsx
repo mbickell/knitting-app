@@ -28,6 +28,7 @@ const Login = ({ user, setUser }) => {
 
   return (
     <>
+      <h2>Login</h2>
       <div className={styles.form}>
         <label>Email:</label>
         <Input type="email" callback={event => setEmail(event.target.value)} value={email} />
