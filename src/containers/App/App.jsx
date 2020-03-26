@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./App.module.scss";
+import firebase from "../../firebase";
 
 import Navbar from "../../components/Navbar";
 
 import Routes from "../Routes";
+import { useEffect } from "react";
 
 const App = () => {
   const [columns, setColumns] = useState(0);
@@ -24,6 +26,20 @@ const App = () => {
     }
     setGrid(y);
   };
+
+  const getUser = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getUser();
+  });
 
   return (
     <>
