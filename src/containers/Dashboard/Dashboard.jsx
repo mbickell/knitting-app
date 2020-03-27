@@ -1,18 +1,22 @@
 import React from "react";
 import styles from "./Dashboard.module.scss";
 
-import Input from "../../components/Input";
+import SavePattern from "../../components/SavePattern";
+import CreatePattern from "../../components/CreatePattern";
 import Columns from "../Columns";
 
-const Dashboard = ({ setColumns, columns, setRows, rows, color, setColor, grid, generateGridArray }) => {
+const Dashboard = props => {
+  const { grid, color, ...other } = props;
+
   return (
     <div className={styles.dashboard}>
       <h2>Dashboard</h2>
       <div className={styles.form}>
-        <Input type="number" callback={event => setColumns(parseInt(event.target.value))} value={columns} />
-        <Input type="number" callback={event => setRows(parseInt(event.target.value))} value={rows} />
-        <button onClick={generateGridArray}>generate columns</button>
-        <Input type="color" callback={event => setColor(event.target.value)} value={color} />
+        <CreatePattern {...other} color={color} />
+      </div>
+
+      <div className={styles.form}>
+        <SavePattern />
       </div>
 
       <div className={styles.grid}>

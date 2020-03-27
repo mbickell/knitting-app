@@ -41,20 +41,23 @@ const App = () => {
     getUser();
   });
 
+  const props = { user, setUser, setColumns, columns, setRows, rows, color, setColor, grid, generateGridArray };
+
   return (
     <>
       <Navbar />
       <Routes
-        user={user}
-        setUser={setUser}
-        setColumns={setColumns}
-        columns={columns}
-        setRows={setRows}
-        rows={rows}
-        color={color}
-        setColor={setColor}
-        grid={grid}
-        generateGridArray={generateGridArray}
+        // user={user}
+        // setUser={setUser}
+        // setColumns={setColumns}
+        // columns={columns}
+        // setRows={setRows}
+        // rows={rows}
+        // color={color}
+        // setColor={setColor}
+        // grid={grid}
+        // generateGridArray={generateGridArray}
+        {...props}
       />
     </>
   );
