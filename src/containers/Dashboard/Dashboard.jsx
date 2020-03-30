@@ -6,7 +6,7 @@ import CreatePattern from "../../components/CreatePattern";
 import Columns from "../Columns";
 
 const Dashboard = props => {
-  const { grid, color, ...other } = props;
+  const { grid, color, user, setGrid, ...other } = props;
 
   return (
     <div className={styles.dashboard}>
@@ -16,11 +16,11 @@ const Dashboard = props => {
       </div>
 
       <div className={styles.form}>
-        <SavePattern />
+        <SavePattern user={user} grid={grid} />
       </div>
 
       <div className={styles.grid}>
-        <Columns grid={grid} color={color} />
+        <Columns grid={grid} color={color} setGrid={setGrid} />
       </div>
     </div>
   );

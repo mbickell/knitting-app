@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./App.module.scss";
-import firebase from "../../firebase";
+import firebase, { firestore } from "../../firebase";
 
 import Navbar from "../../components/Navbar";
 
@@ -37,28 +37,58 @@ const App = () => {
     });
   };
 
+  const getPattern = () => {
+    if (user) {
+      firestore
+        .collection("users")
+        .doc(user.uid)
+        .collection("patterns")
+        .doc("test")
+        .get()
+        .then(doc => {
+          console.log(doc.data());
+          console.log(doc.data().pattern);
+          const pattern = doc.data().pattern;
+          const columns = [];
+          for (const column in pattern) {
+            columns.push(pattern[column]);
+          }
+
+          columns.sort((a, b) => a.index - b.index);
+          const grid = columns.map(column => column.column);
+          console.log(grid);
+
+          setGrid(grid);
+        });
+    }
+  };
+
   useEffect(() => {
     getUser();
   });
 
-  const props = { user, setUser, setColumns, columns, setRows, rows, color, setColor, grid, generateGridArray };
+  useEffect(() => {
+    getPattern();
+  }, [user]);
+
+  const props = {
+    user,
+    setUser,
+    setColumns,
+    columns,
+    setRows,
+    rows,
+    color,
+    setColor,
+    grid,
+    setGrid,
+    generateGridArray
+  };
 
   return (
     <>
       <Navbar />
-      <Routes
-        // user={user}
-        // setUser={setUser}
-        // setColumns={setColumns}
-        // columns={columns}
-        // setRows={setRows}
-        // rows={rows}
-        // color={color}
-        // setColor={setColor}
-        // grid={grid}
-        // generateGridArray={generateGridArray}
-        {...props}
-      />
+      <Routes {...props} />
     </>
   );
 };

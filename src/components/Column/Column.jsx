@@ -3,11 +3,20 @@ import styles from "./Column.module.scss";
 
 import Square from "../Square";
 
-const Column = ({ grid, color, indexNo }) => {
+const Column = ({ column, color, columnIndex, grid, setGrid }) => {
   return (
     <>
-      {grid.map((type, index) => (
-        <Square key={`${indexNo}-${index}`} type={type} newColor={color} />
+      {column.map((type, index, column) => (
+        <Square
+          key={`${columnIndex}-${index}`}
+          column={column}
+          columnIndex={columnIndex}
+          index={index}
+          type={type}
+          newColor={color}
+          grid={grid}
+          setGrid={setGrid}
+        />
       ))}
     </>
   );

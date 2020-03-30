@@ -3,7 +3,7 @@ import styles from "./Columns.module.scss";
 
 import Column from "../../components/Column";
 
-const Columns = ({ grid, color }) => {
+const Columns = ({ grid, color, setGrid }) => {
   const generateNumbers = () => {
     return grid[0].map((cell, index, array) => (
       <p key={array.length - index} className={styles.marker}>
@@ -15,10 +15,10 @@ const Columns = ({ grid, color }) => {
   return (
     <>
       <div>{generateNumbers()}</div>
-      {grid.map((column, index, array) => (
-        <div className={styles.column}>
-          <Column indexNo={index} grid={column} color={color} />
-          <p>{array.length - index}</p>
+      {grid.map((column, columnIndex) => (
+        <div className={styles.column} key={columnIndex}>
+          <Column columnIndex={columnIndex} column={column} color={color} grid={grid} setGrid={setGrid} />
+          <p>{grid.length - columnIndex}</p>
         </div>
       ))}
       <div>{generateNumbers()}</div>

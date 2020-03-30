@@ -5,7 +5,7 @@ import firebase from "../../firebase";
 
 import Input from "../../components/Input";
 
-const Login = ({ user, setUser }) => {
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
