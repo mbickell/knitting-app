@@ -4,6 +4,7 @@ import styles from "./Dashboard.module.scss";
 import SavePattern from "../../components/SavePattern";
 import CreatePattern from "../../components/CreatePattern";
 import Columns from "../Columns";
+import LoadPattern from "../LoadPattern/LoadPattern";
 
 const Dashboard = props => {
   const { grid, color, user, setGrid, ...other } = props;
@@ -17,6 +18,10 @@ const Dashboard = props => {
 
       <div className={styles.form}>
         <SavePattern user={user} grid={grid} />
+      </div>
+
+      <div className={styles.form}>
+        <LoadPattern />
       </div>
 
       <div className={styles.grid}>
