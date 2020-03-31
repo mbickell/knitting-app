@@ -5,7 +5,7 @@ import Column from "../../components/Column";
 
 const Columns = ({ grid, color, setGrid }) => {
   const generateNumbers = () => {
-    return grid[0].map((cell, index, array) => (
+    return grid.grid[0].map((cell, index, array) => (
       <p key={array.length - index} className={styles.marker}>
         {array.length - index}
       </p>
@@ -15,10 +15,10 @@ const Columns = ({ grid, color, setGrid }) => {
   return (
     <>
       <div>{generateNumbers()}</div>
-      {grid.map((column, columnIndex) => (
-        <div className={styles.column} key={columnIndex}>
+      {grid.grid.map((column, columnIndex) => (
+        <div className={styles.column} key={`${grid.name}-${columnIndex}`}>
           <Column columnIndex={columnIndex} column={column} color={color} grid={grid} setGrid={setGrid} />
-          <p>{grid.length - columnIndex}</p>
+          <p>{grid.grid.length - columnIndex}</p>
         </div>
       ))}
       <div>{generateNumbers()}</div>

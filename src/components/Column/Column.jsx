@@ -8,7 +8,7 @@ const Column = ({ column, color, columnIndex, grid, setGrid }) => {
     <>
       {column.map((type, index, column) => (
         <Square
-          key={`${columnIndex}-${index}`}
+          key={`${grid.name}-${columnIndex}-${index}`}
           column={column}
           columnIndex={columnIndex}
           index={index}

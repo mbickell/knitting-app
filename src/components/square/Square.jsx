@@ -7,14 +7,10 @@ const Square = ({ type, newColor, column, index, grid, setGrid, columnIndex }) =
 
   const changeColor = () => {
     column[index] = newColor;
-    console.log(grid);
 
-    grid[columnIndex] = column;
-    console.log(grid);
+    grid.grid[columnIndex] = column;
     setGrid(grid);
     // setGrid();
-    console.log(column);
-    console.log(newColor);
     setColor(newColor);
   };
 

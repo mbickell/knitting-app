@@ -14,7 +14,8 @@ const App = () => {
   const [color, setColor] = useState("#ffffff");
   const [user, setUser] = useState(null);
 
-  const [grid, setGrid] = useState([[]]);
+  const [grid, setGrid] = useState({ grid: [[]], name: "" });
+  const [allPatterns, setAllPatterns] = useState([]);
 
   const generateGridArray = () => {
     const y = [];
@@ -25,7 +26,7 @@ const App = () => {
       }
       y.push(x);
     }
-    setGrid(y);
+    setGrid({ grid: y, name: "" });
   };
 
   const getUser = () => {
@@ -38,28 +39,50 @@ const App = () => {
     });
   };
 
-  const getPattern = () => {
+  // const getPattern = () => {
+  //   if (user) {
+  //     firestore
+  //       .collection("users")
+  //       .doc(user.uid)
+  //       .collection("patterns")
+  //       .doc("test")
+  //       .get()
+  //       .then(doc => {
+  //         const pattern = doc.data().pattern;
+  //         const columns = [];
+  //         for (const column in pattern) {
+  //           columns.push(pattern[column]);
+  //         }
+
+  //         columns.sort((a, b) => a.index - b.index);
+  //         const grid = columns.map(column => column.column);
+
+  //         setGrid(grid);
+  //       });
+  //   }
+  // };
+
+  const getAllPatterns = () => {
     if (user) {
       firestore
         .collection("users")
         .doc(user.uid)
         .collection("patterns")
-        .doc("test")
         .get()
-        .then(doc => {
-          console.log(doc.data());
-          console.log(doc.data().pattern);
-          const pattern = doc.data().pattern;
-          const columns = [];
-          for (const column in pattern) {
-            columns.push(pattern[column]);
-          }
+        .then(querySnapshot => {
+          const allPatterns = [];
+          querySnapshot.forEach(doc => {
+            const pattern = doc.data().pattern;
+            const columns = [];
+            for (const column in pattern) {
+              columns.push(pattern[column]);
+            }
 
-          columns.sort((a, b) => a.index - b.index);
-          const grid = columns.map(column => column.column);
-          console.log(grid);
+            columns.sort((a, b) => a.index - b.index);
+            allPatterns.push({ name: doc.id, grid: columns.map(column => column.column) });
+          });
 
-          setGrid(grid);
+          setAllPatterns(allPatterns);
         });
     }
   };
@@ -69,7 +92,7 @@ const App = () => {
   });
 
   useEffect(() => {
-    getPattern();
+    getAllPatterns();
   }, [user]);
 
   const props = {
@@ -83,7 +106,9 @@ const App = () => {
     setColor,
     grid,
     setGrid,
-    generateGridArray
+    generateGridArray,
+    allPatterns,
+    getAllPatterns
   };
 
   return (
