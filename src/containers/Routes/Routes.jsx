@@ -5,6 +5,7 @@ import { Router, Redirect } from "@reach/router";
 import SignUp from "../SignUp";
 import Login from "../Login";
 import Dashboard from "../Dashboard";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 const Routes = props => {
   const { setUser, ...other } = props;
@@ -14,7 +15,9 @@ const Routes = props => {
       <Redirect noThrow from="/" to="dash" />
       <SignUp path="sign-up" />
       <Login path="login" setUser={setUser} />
-      <Dashboard path="dash" {...other} />
+      <PrivateRoutes path="/">
+        <Dashboard path="dash" {...other} />
+      </PrivateRoutes>
     </Router>
   );
 };

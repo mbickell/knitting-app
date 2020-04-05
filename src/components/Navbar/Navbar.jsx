@@ -3,7 +3,7 @@ import styles from "./Navbar.module.scss";
 
 import { Link } from "@reach/router";
 
-const Navbar = () => {
+const Navbar = ({ user, logout }) => {
   const isActive = ({ isCurrent }) => {
     return {
       style: {
@@ -14,15 +14,21 @@ const Navbar = () => {
 
   return (
     <nav className={styles.nav}>
-      <Link getProps={isActive} to="/dash">
-        Home
-      </Link>
+      {user ? (
+        <Link getProps={isActive} to="/dash">
+          Home
+        </Link>
+      ) : null}
       <Link getProps={isActive} to="/sign-up">
         Sign up
       </Link>
-      <Link getProps={isActive} to="/login">
-        Login
-      </Link>
+      {user ? (
+        <button onClick={logout}>Sign out</button>
+      ) : (
+        <Link getProps={isActive} to="/login">
+          Login
+        </Link>
+      )}
     </nav>
   );
 };

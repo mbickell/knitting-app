@@ -3,6 +3,7 @@ import styles from "./SignUp.module.scss";
 import firebase from "../../firebase";
 
 import Input from "../../components/Input";
+import { navigate } from "@reach/router";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ const SignUp = () => {
           setEmail("");
           setPassword("");
           setConfirmedPassword("");
+          navigate("/dash");
         })
         .catch(error => {
           // Handle Errors here.

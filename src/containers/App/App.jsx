@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import Routes from "../Routes";
 import { useEffect } from "react";
 import DropDown from "../../components/DropDown/DropDown";
+import { navigate } from "@reach/router";
 
 const App = () => {
   const [columns, setColumns] = useState(0);
@@ -39,28 +40,14 @@ const App = () => {
     });
   };
 
-  // const getPattern = () => {
-  //   if (user) {
-  //     firestore
-  //       .collection("users")
-  //       .doc(user.uid)
-  //       .collection("patterns")
-  //       .doc("test")
-  //       .get()
-  //       .then(doc => {
-  //         const pattern = doc.data().pattern;
-  //         const columns = [];
-  //         for (const column in pattern) {
-  //           columns.push(pattern[column]);
-  //         }
-
-  //         columns.sort((a, b) => a.index - b.index);
-  //         const grid = columns.map(column => column.column);
-
-  //         setGrid(grid);
-  //       });
-  //   }
-  // };
+  const logout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        navigate("/login");
+      });
+  };
 
   const getAllPatterns = () => {
     if (user) {
@@ -113,7 +100,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} logout={logout} />
       <Routes {...props} />
     </>
   );

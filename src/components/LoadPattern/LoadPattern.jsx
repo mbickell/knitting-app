@@ -8,7 +8,9 @@ const LoadPattern = ({ allPatterns, setGrid }) => {
       <h2>Load pattern</h2>
       <DropDown>
         {allPatterns.map(pattern => (
-          <p onClick={() => setGrid(pattern)}>{pattern.name}</p>
+          <p key={pattern.name} onClick={() => setGrid(pattern)}>
+            {pattern.name}
+          </p>
         ))}
       </DropDown>
     </>

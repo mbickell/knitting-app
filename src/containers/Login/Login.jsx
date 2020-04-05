@@ -4,6 +4,7 @@ import styles from "./Login.module.scss";
 import firebase from "../../firebase";
 
 import Input from "../../components/Input";
+import { navigate } from "@reach/router";
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
@@ -16,6 +17,9 @@ const Login = ({ setUser }) => {
       .then(() => {
         const user = firebase.auth().currentUser;
         setUser(user);
+      })
+      .then(() => {
+        navigate("/dash");
       })
       .catch(function(error) {
         // Handle Errors here.
