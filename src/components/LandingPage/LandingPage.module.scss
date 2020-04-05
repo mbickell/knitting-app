@@ -1,0 +1,32 @@
+.landingPage {
+  background-image: url("https://placekitten.com/800/600");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80vw;
+    padding: 40px;
+    height: 80vh;
+    background-color: #2f4f4fab;
+    color: white;
+
+    .button {
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      color: black;
+      background-color: dodgerblue;
+      margin-top: auto;
+    }
+  }
+}

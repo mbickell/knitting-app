@@ -31,16 +31,21 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <>
+    <article>
       <h2>Login</h2>
       <div className={styles.form}>
         <label>Email:</label>
-        <Input type="email" callback={event => setEmail(event.target.value)} value={email} />
+        <Input type="email" callback={(event) => setEmail(event.target.value)} value={email} placeholder="Email" />
         <label>Password:</label>
-        <Input type="password" callback={event => setPassword(event.target.value)} value={password} />
+        <Input
+          type="password"
+          callback={(event) => setPassword(event.target.value)}
+          value={password}
+          placeholder="Password"
+        />
         <button onClick={login}>Sign in</button>
       </div>
-    </>
+    </article>
   );
 };
 

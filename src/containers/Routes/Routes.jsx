@@ -1,22 +1,23 @@
 import React from "react";
 // import styles from "./Routes.module.scss";
-import { Router, Redirect } from "@reach/router";
+import { Router } from "@reach/router";
 
 import SignUp from "../SignUp";
 import Login from "../Login";
+import LandingPage from "../../components/LandingPage";
 import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 const Routes = (props) => {
-  const { setUser, ...other } = props;
+  const { setUser, user, ...other } = props;
 
   return (
     <Router>
-      <Redirect noThrow from="/" to="dash" />
+      <LandingPage path="/" setUser={setUser} />
       <SignUp path="sign-up" />
       <Login path="login" setUser={setUser} />
-      <PrivateRoutes path="/">
-        <Dashboard path="dash" {...other} />
+      <PrivateRoutes path="/" {...other}>
+        <Dashboard path="dash" user={user} {...other} />
       </PrivateRoutes>
     </Router>
   );

@@ -2,33 +2,29 @@ import React from "react";
 import styles from "./Navbar.module.scss";
 
 import { Link } from "@reach/router";
+import { useEffect } from "react";
 
-const Navbar = ({ user, logout }) => {
+const Navbar = ({ logout }) => {
   const isActive = ({ isCurrent }) => {
     return {
       style: {
-        color: isCurrent ? "red" : "blue"
-      }
+        color: isCurrent ? "red" : "blue",
+      },
     };
   };
 
+  const display = window.location.pathname === "/" ? styles.displayNone : null;
+
   return (
-    <nav className={styles.nav}>
-      {user ? (
-        <Link getProps={isActive} to="/dash">
-          Home
-        </Link>
-      ) : null}
+    <nav className={`${styles.nav} ${display}`}>
+      <Link getProps={isActive} to="/dash">
+        Home
+      </Link>
+
       <Link getProps={isActive} to="/sign-up">
         Sign up
       </Link>
-      {user ? (
-        <button onClick={logout}>Sign out</button>
-      ) : (
-        <Link getProps={isActive} to="/login">
-          Login
-        </Link>
-      )}
+      <button onClick={logout}>Sign out</button>
     </nav>
   );
 };

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import firebase, { firestore } from "../../firebase";
 
 import Navbar from "../../components/Navbar";
-
 import Routes from "../Routes";
 // import DropDown from "../../components/DropDown/DropDown";
 import { navigate } from "@reach/router";
@@ -33,6 +32,7 @@ const App = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
+        // navigate("dash");
       } else {
         setUser(null);
       }
@@ -44,7 +44,7 @@ const App = () => {
       .auth()
       .signOut()
       .then(() => {
-        navigate("/login");
+        navigate("/");
       });
   };
   const getAllPatterns = useCallback(() => {
@@ -94,11 +94,12 @@ const App = () => {
     generateGridArray,
     allPatterns,
     getAllPatterns,
+    logout,
   };
 
   return (
     <>
-      <Navbar user={user} logout={logout} />
+      <Navbar logout={logout} />
       <Routes {...props} />
     </>
   );
