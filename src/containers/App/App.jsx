@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import styles from "./App.module.scss";
+import React, { useState, useEffect, useCallback } from "react";
+// import styles from "./App.module.scss";
 import firebase, { firestore } from "../../firebase";
 
 import Navbar from "../../components/Navbar";
 
 import Routes from "../Routes";
-import { useEffect } from "react";
-import DropDown from "../../components/DropDown/DropDown";
+// import DropDown from "../../components/DropDown/DropDown";
 import { navigate } from "@reach/router";
 
 const App = () => {
@@ -31,7 +30,7 @@ const App = () => {
   };
 
   const getUser = () => {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
       } else {
@@ -48,17 +47,16 @@ const App = () => {
         navigate("/login");
       });
   };
-
-  const getAllPatterns = () => {
+  const getAllPatterns = useCallback(() => {
     if (user) {
       firestore
         .collection("users")
         .doc(user.uid)
         .collection("patterns")
         .get()
-        .then(querySnapshot => {
+        .then((querySnapshot) => {
           const allPatterns = [];
-          querySnapshot.forEach(doc => {
+          querySnapshot.forEach((doc) => {
             const pattern = doc.data().pattern;
             const columns = [];
             for (const column in pattern) {
@@ -66,13 +64,13 @@ const App = () => {
             }
 
             columns.sort((a, b) => a.index - b.index);
-            allPatterns.push({ name: doc.id, grid: columns.map(column => column.column) });
+            allPatterns.push({ name: doc.id, grid: columns.map((column) => column.column) });
           });
 
           setAllPatterns(allPatterns);
         });
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     getUser();
@@ -80,7 +78,7 @@ const App = () => {
 
   useEffect(() => {
     getAllPatterns();
-  }, [user]);
+  }, [getAllPatterns]);
 
   const props = {
     user,
@@ -95,7 +93,7 @@ const App = () => {
     setGrid,
     generateGridArray,
     allPatterns,
-    getAllPatterns
+    getAllPatterns,
   };
 
   return (

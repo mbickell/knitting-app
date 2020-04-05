@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Routes.module.scss";
+// import styles from "./Routes.module.scss";
 import { Router, Redirect } from "@reach/router";
 
 import SignUp from "../SignUp";
@@ -7,7 +7,7 @@ import Login from "../Login";
 import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
-const Routes = props => {
+const Routes = (props) => {
   const { setUser, ...other } = props;
 
   return (

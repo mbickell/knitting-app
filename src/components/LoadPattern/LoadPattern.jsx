@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LoadPattern.module.scss";
+// import styles from "./LoadPattern.module.scss";
 import DropDown from "../../components/DropDown/DropDown";
 
 const LoadPattern = ({ allPatterns, setGrid }) => {
@@ -7,7 +7,7 @@ const LoadPattern = ({ allPatterns, setGrid }) => {
     <>
       <h2>Load pattern</h2>
       <DropDown>
-        {allPatterns.map(pattern => (
+        {allPatterns.map((pattern) => (
           <p key={pattern.name} onClick={() => setGrid(pattern)}>
             {pattern.name}
           </p>

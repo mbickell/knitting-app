@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Column.module.scss";
+// import styles from "./Column.module.scss";
 
 import Square from "../Square";
 
