@@ -9,7 +9,7 @@ const LandingPage = ({ setUser }) => {
     <article className={styles.landingPage}>
       <div className={styles.content}>
         <Login setUser={setUser} />
-        <Link className={styles.button} to="sign-up">
+        <Link className="button" to="sign-up">
           Sign up
         </Link>
       </div>

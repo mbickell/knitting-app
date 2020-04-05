@@ -43,7 +43,9 @@ const Login = ({ setUser }) => {
           value={password}
           placeholder="Password"
         />
-        <button onClick={login}>Sign in</button>
+        <button className="button secondary" onClick={login}>
+          Sign in
+        </button>
       </div>
     </article>
   );
