@@ -11,10 +11,11 @@ const App = () => {
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
   const [color, setColor] = useState("#ffffff");
-  const [user, setUser] = useState(null);
 
-  const [grid, setGrid] = useState({ grid: [[]], name: "" });
-  const [allPatterns, setAllPatterns] = useState([]);
+  const [user, setUser] = useState({ uid: "" });
+
+  const [grid, setGrid] = useState({ grid: [["blah"]], name: "" });
+  const [allPatterns, setAllPatterns] = useState([{}]);
 
   const generateGridArray = () => {
     const y = [];
@@ -32,9 +33,10 @@ const App = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
+
         // navigate("dash");
       } else {
-        setUser(null);
+        setUser({ uid: "" });
       }
     });
   };
@@ -55,7 +57,7 @@ const App = () => {
         .collection("patterns")
         .get()
         .then((querySnapshot) => {
-          const allPatterns = [];
+          const allPatterns: Object[] = [];
           querySnapshot.forEach((doc) => {
             const pattern = doc.data().pattern;
             const columns = [];

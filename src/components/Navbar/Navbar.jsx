@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Navbar.module.scss";
 
 import { Link } from "@reach/router";
-import { useEffect } from "react";
 
 const Navbar = ({ logout }) => {
   const isActive = ({ isCurrent }) => {
