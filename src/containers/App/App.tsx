@@ -5,7 +5,7 @@ import firebase, { firestore } from "../../firebase";
 import Navbar from "../../components/Navbar";
 import Routes from "../Routes";
 // import DropDown from "../../components/DropDown/DropDown";
-import { navigate } from "@reach/router";
+import { navigate, redirectTo } from "@reach/router";
 
 const App = () => {
   const [columns, setColumns] = useState(0);
@@ -14,10 +14,10 @@ const App = () => {
 
   const [user, setUser] = useState({ uid: "" });
 
-  const [grid, setGrid] = useState({ grid: [["blah"]], name: "" });
+  const [grid, setGrid] = useState({ grid: [[""]], name: "" });
   const [allPatterns, setAllPatterns] = useState([{}]);
 
-  const generateGridArray = () => {
+  const generateGridArray = (): void => {
     const y = [];
     for (let i = 0; i < columns; i++) {
       const x = [];
@@ -29,24 +29,25 @@ const App = () => {
     setGrid({ grid: y, name: "" });
   };
 
-  const getUser = () => {
+  const getUser = (): void => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
+        console.log("hello");
 
-        // navigate("dash");
+        navigate("/p/dash");
       } else {
         setUser({ uid: "" });
       }
     });
   };
 
-  const logout = () => {
+  const logout = (): void => {
     firebase
       .auth()
       .signOut()
-      .then(() => {
-        navigate("/");
+      .then((): void => {
+        navigate("/login");
       });
   };
   const getAllPatterns = useCallback(() => {
@@ -76,7 +77,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   useEffect(() => {
     getAllPatterns();

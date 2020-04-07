@@ -3,8 +3,8 @@ import styles from "./Navbar.module.scss";
 
 import { Link } from "@reach/router";
 
-const Navbar = ({ logout }) => {
-  const isActive = ({ isCurrent }) => {
+const Navbar = ({ logout }: { logout: () => void }) => {
+  const isActive = ({ isCurrent }: { isCurrent: boolean }) => {
     return {
       style: {
         color: isCurrent ? "red" : "blue",
@@ -16,7 +16,7 @@ const Navbar = ({ logout }) => {
 
   return (
     <nav className={`${styles.nav} ${display}`}>
-      <Link getProps={isActive} to="/dash">
+      <Link getProps={isActive} to="/p/dash">
         Home
       </Link>
 

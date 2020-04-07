@@ -1,6 +1,6 @@
 import React from "react";
 // import styles from "./Routes.module.scss";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 
 import SignUp from "../SignUp";
 import Login from "../Login";
@@ -13,10 +13,11 @@ const Routes = (props) => {
 
   return (
     <Router>
-      <LandingPage path="/" setUser={setUser} />
+      <Redirect noThrow from="/" to="/login" />
+      <LandingPage path="login" setUser={setUser} />
       <SignUp path="sign-up" />
-      <Login path="login" setUser={setUser} />
-      <PrivateRoutes path="/" {...other}>
+      <Login path="unused" setUser={setUser} />
+      <PrivateRoutes path="p" {...other}>
         <Dashboard path="dash" user={user} {...other} />
       </PrivateRoutes>
     </Router>
