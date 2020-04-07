@@ -50,7 +50,7 @@ const App = () => {
       });
   };
   const getAllPatterns = useCallback(() => {
-    if (user) {
+    if (user.uid) {
       firestore
         .collection("users")
         .doc(user.uid)
