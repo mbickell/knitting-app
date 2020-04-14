@@ -7,15 +7,20 @@ import Routes from "../Routes";
 // import DropDown from "../../components/DropDown/DropDown";
 import { navigate, redirectTo } from "@reach/router";
 
-const App = () => {
+interface grid {
+  grid: string[][];
+  name: string;
+}
+
+const App: React.FC = () => {
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
   const [color, setColor] = useState("#ffffff");
 
-  const [user, setUser] = useState({ uid: "" });
+  const [user, setUser] = useState<{ uid: string } | null>(null);
 
-  const [grid, setGrid] = useState({ grid: [[""]], name: "" });
-  const [allPatterns, setAllPatterns] = useState([{}]);
+  const [grid, setGrid] = useState<grid | null>(null);
+  const [allPatterns, setAllPatterns] = useState<grid[]>([]);
 
   const generateGridArray = (): void => {
     const y = [];
@@ -33,11 +38,9 @@ const App = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        console.log("hello");
-
         navigate("/p/dash");
       } else {
-        setUser({ uid: "" });
+        setUser(null);
       }
     });
   };
@@ -50,15 +53,15 @@ const App = () => {
         navigate("/login");
       });
   };
-  const getAllPatterns = useCallback(() => {
-    if (user.uid) {
+  const getAllPatterns = useCallback((): void => {
+    if (user) {
       firestore
         .collection("users")
         .doc(user.uid)
         .collection("patterns")
         .get()
         .then((querySnapshot) => {
-          const allPatterns: Object[] = [];
+          const allPatterns: grid[] = [];
           querySnapshot.forEach((doc) => {
             const pattern = doc.data().pattern;
             const columns = [];
@@ -75,11 +78,11 @@ const App = () => {
     }
   }, [user]);
 
-  useEffect(() => {
+  useEffect((): void => {
     getUser();
   }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     getAllPatterns();
   }, [getAllPatterns]);
 

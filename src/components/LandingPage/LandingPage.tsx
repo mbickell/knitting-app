@@ -3,18 +3,16 @@ import styles from "./LandingPage.module.scss";
 import { Link, RouteComponentProps } from "@reach/router";
 
 import Login from "../../containers/Login";
-
-interface Props {
+export interface LandingPageProps {
   path: typeof RouteComponentProps;
   setUser: React.Dispatch<
     React.SetStateAction<{
       uid: string;
-    }>
+    } | null>
   >;
 }
 
-const LandingPage = ({ setUser }: Props) => {
-  // const { setUser }: Props = props;
+const LandingPage: React.FC<LandingPageProps> = ({ setUser }) => {
   return (
     <article className={styles.landingPage}>
       <div className={styles.content}>

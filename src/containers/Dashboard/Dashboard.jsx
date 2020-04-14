@@ -7,7 +7,7 @@ import CreatePattern from "../../components/CreatePattern";
 import Columns from "../Columns";
 import LoadPattern from "../../components/LoadPattern";
 
-const Dashboard = props => {
+const Dashboard = (props) => {
   const { grid, color, user, setGrid, allPatterns, getAllPatterns, ...other } = props;
   const [name, setName] = useState("");
 
@@ -24,7 +24,7 @@ const Dashboard = props => {
       .collection("patterns")
       .doc(name)
       .set({
-        pattern: saveableGrid
+        pattern: saveableGrid,
       })
       .then(() => {
         getAllPatterns();
@@ -46,9 +46,7 @@ const Dashboard = props => {
         <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
       </div>
 
-      <div className={styles.grid}>
-        <Columns grid={grid} color={color} setGrid={setGrid} />
-      </div>
+      <div className={styles.grid}>{grid ? <Columns grid={grid} color={color} setGrid={setGrid} /> : null}</div>
     </div>
   );
 };

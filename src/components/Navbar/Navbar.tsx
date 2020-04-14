@@ -3,8 +3,8 @@ import styles from "./Navbar.module.scss";
 
 import { Link } from "@reach/router";
 
-const Navbar = ({ logout }: { logout: () => void }) => {
-  const isActive = ({ isCurrent }: { isCurrent: boolean }) => {
+const Navbar = ({ logout }: { logout: () => void }): JSX.Element => {
+  const isActive = ({ isCurrent }: { isCurrent: boolean }): { style: { color: string } } => {
     return {
       style: {
         color: isCurrent ? "red" : "blue",
@@ -12,7 +12,7 @@ const Navbar = ({ logout }: { logout: () => void }) => {
     };
   };
 
-  const display = window.location.pathname === "/" ? styles.displayNone : null;
+  const display: string | null = window.location.pathname === "/" ? styles.displayNone : null;
 
   return (
     <nav className={`${styles.nav} ${display}`}>

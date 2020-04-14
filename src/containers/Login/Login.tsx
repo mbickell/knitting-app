@@ -6,7 +6,7 @@ import firebase from "../../firebase";
 import Input from "../../components/Input";
 import { navigate } from "@reach/router";
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser }): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

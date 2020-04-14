@@ -9,17 +9,15 @@ import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 interface Props {
-  user: { uid: string };
+  user: { uid: string } | null;
   setUser: React.Dispatch<
     React.SetStateAction<{
       uid: string;
-    }>
+    } | null>
   >;
 }
 
-const Routes = ({ setUser, user, ...other }: Props) => {
-  // const { setUser, user, ...other } = props;
-
+const Routes: React.FC<Props> = ({ setUser, user, ...other }) => {
   return (
     <Router>
       <Redirect noThrow from="/" to="/login" />
