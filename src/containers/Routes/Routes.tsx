@@ -8,8 +8,17 @@ import LandingPage from "../../components/LandingPage";
 import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
-const Routes = (props) => {
-  const { setUser, user, ...other } = props;
+interface Props {
+  user: { uid: string };
+  setUser: React.Dispatch<
+    React.SetStateAction<{
+      uid: string;
+    }>
+  >;
+}
+
+const Routes = ({ setUser, user, ...other }: Props) => {
+  // const { setUser, user, ...other } = props;
 
   return (
     <Router>

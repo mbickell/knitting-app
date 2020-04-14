@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import styles from "./SignUp.module.scss";
 import firebase from "../../firebase";
 
 import Input from "../../components/Input";
-import { navigate } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 
-const SignUp = () => {
+const SignUp = (props: typeof RouteComponentProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
-  const createUser = () => {
+  const createUser = (): void => {
     if (password === confirmedPassword && email.includes("@") && email.includes(".", email.indexOf("@"))) {
       firebase
         .auth()
@@ -21,7 +21,7 @@ const SignUp = () => {
           setConfirmedPassword("");
           navigate("/dash");
         })
-        .catch(error => {
+        .catch((error) => {
           // Handle Errors here.
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -40,11 +40,26 @@ const SignUp = () => {
       <h2>Sign up</h2>
       <div className={styles.form}>
         <label>Email:</label>
-        <Input type="email" callback={event => setEmail(event.target.value)} value={email} />
+        <Input
+          type="email"
+          callback={(event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
+          value={email}
+          placeholder="Email"
+        />
         <label>Password:</label>
-        <Input type="password" callback={event => setPassword(event.target.value)} value={password} />
+        <Input
+          type="password"
+          callback={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
+          value={password}
+          placeholder="Password"
+        />
         <label>Confirm password:</label>
-        <Input type="password" callback={event => setConfirmedPassword(event.target.value)} value={confirmedPassword} />
+        <Input
+          type="password"
+          callback={(event: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(event.target.value)}
+          value={confirmedPassword}
+          placeholder="Confrim password"
+        />
         <button onClick={createUser}>Sign up</button>
       </div>
     </>
