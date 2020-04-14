@@ -5,11 +5,7 @@ import { Link, RouteComponentProps } from "@reach/router";
 import Login from "../../containers/Login";
 export interface LandingPageProps {
   path: typeof RouteComponentProps;
-  setUser: React.Dispatch<
-    React.SetStateAction<{
-      uid: string;
-    } | null>
-  >;
+  setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ setUser }) => {

@@ -3,7 +3,7 @@ import styles from "./Navbar.module.scss";
 
 import { Link } from "@reach/router";
 
-const Navbar = ({ logout }: { logout: () => void }): JSX.Element => {
+const Navbar: React.FC<{ logout: () => void }> = ({ logout }) => {
   const isActive = ({ isCurrent }: { isCurrent: boolean }): { style: { color: string } } => {
     return {
       style: {

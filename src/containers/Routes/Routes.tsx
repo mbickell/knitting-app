@@ -9,12 +9,8 @@ import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 interface Props {
-  user: { uid: string } | null;
-  setUser: React.Dispatch<
-    React.SetStateAction<{
-      uid: string;
-    } | null>
-  >;
+  user: firebase.User | null;
+  setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
 }
 
 const Routes: React.FC<Props> = ({ setUser, user, ...other }) => {

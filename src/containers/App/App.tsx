@@ -17,15 +17,15 @@ const App: React.FC = () => {
   const [rows, setRows] = useState(0);
   const [color, setColor] = useState("#ffffff");
 
-  const [user, setUser] = useState<{ uid: string } | null>(null);
+  const [user, setUser] = useState<firebase.User | null>(null);
 
   const [grid, setGrid] = useState<grid | null>(null);
   const [allPatterns, setAllPatterns] = useState<grid[]>([]);
 
   const generateGridArray = (): void => {
-    const y = [];
+    const y: string[][] = [];
     for (let i = 0; i < columns; i++) {
-      const x = [];
+      const x: string[] = [];
       for (let i = 0; i < rows; i++) {
         x.push("#ffffff");
       }
@@ -49,11 +49,11 @@ const App: React.FC = () => {
     firebase
       .auth()
       .signOut()
-      .then((): void => {
+      .then(() => {
         navigate("/login");
       });
   };
-  const getAllPatterns = useCallback((): void => {
+  const getAllPatterns = useCallback(() => {
     if (user) {
       firestore
         .collection("users")
@@ -64,6 +64,7 @@ const App: React.FC = () => {
           const allPatterns: grid[] = [];
           querySnapshot.forEach((doc) => {
             const pattern = doc.data().pattern;
+
             const columns = [];
             for (const column in pattern) {
               columns.push(pattern[column]);
@@ -78,11 +79,11 @@ const App: React.FC = () => {
     }
   }, [user]);
 
-  useEffect((): void => {
+  useEffect(() => {
     getUser();
   }, []);
 
-  useEffect((): void => {
+  useEffect(() => {
     getAllPatterns();
   }, [getAllPatterns]);
 

@@ -5,12 +5,13 @@ import firebase from "../../firebase";
 
 import Input from "../../components/Input";
 import { navigate } from "@reach/router";
+import { FirebaseError } from "firebase";
 
-const Login = ({ setUser }): JSX.Element => {
+const Login: React.FC<{ setUser: React.Dispatch<React.SetStateAction<firebase.User | null>> }> = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = () => {
+  const login = (): void => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -21,7 +22,7 @@ const Login = ({ setUser }): JSX.Element => {
       .then(() => {
         navigate("/dash");
       })
-      .catch(function(error) {
+      .catch((error: FirebaseError) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
