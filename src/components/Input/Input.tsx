@@ -8,7 +8,7 @@ interface Props {
   placeholder: string;
 }
 
-const Input = ({ type, value, callback, placeholder }: Props) => {
+const Input: React.FC<Props> = ({ type, value, callback, placeholder }) => {
   return (
     <>
       <input className={styles.input} type={type} value={value} onChange={callback} placeholder={placeholder} />

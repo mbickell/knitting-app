@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { navigate } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 // import styles from "./PrivateRoutes.module.scss";
 import firebase from "../../firebase";
 
-const PrivateRoutes = ({ children }) => {
+const PrivateRoutes: React.FC<typeof RouteComponentProps> = ({ children }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (!user) {

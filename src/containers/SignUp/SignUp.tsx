@@ -4,8 +4,9 @@ import firebase from "../../firebase";
 
 import Input from "../../components/Input";
 import { navigate, RouteComponentProps } from "@reach/router";
+import { FirebaseError } from "firebase";
 
-const SignUp = (props: typeof RouteComponentProps) => {
+const SignUp: React.FC<typeof RouteComponentProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -21,7 +22,7 @@ const SignUp = (props: typeof RouteComponentProps) => {
           setConfirmedPassword("");
           navigate("/dash");
         })
-        .catch((error) => {
+        .catch((error: FirebaseError) => {
           // Handle Errors here.
           const errorCode = error.code;
           const errorMessage = error.message;

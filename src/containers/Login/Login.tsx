@@ -4,10 +4,15 @@ import styles from "./Login.module.scss";
 import firebase from "../../firebase";
 
 import Input from "../../components/Input";
-import { navigate } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 import { FirebaseError } from "firebase";
 
-const Login: React.FC<{ setUser: React.Dispatch<React.SetStateAction<firebase.User | null>> }> = ({ setUser }) => {
+interface Props {
+  setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
+  path: typeof RouteComponentProps;
+}
+
+const Login: React.FC<Props> = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
