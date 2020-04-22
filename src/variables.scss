@@ -1,0 +1,29 @@
+$dark: rgb(23, 28, 34);
+$light: rgb(206, 213, 218);
+$primary: rgb(30, 55, 61);
+$accent: rgb(166, 87, 41);
+
+@mixin primaryButton {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  color: $dark;
+  background-color: $accent;
+  border: 2px solid $accent;
+
+  &:hover,
+  &:focus {
+    background-color: $accent - 10;
+    border-color: $accent - 10;
+    cursor: pointer;
+    color: $light;
+  }
+}
+
+@mixin secondaryButton {
+  @include primaryButton;
+  background-color: rgba($dark, 0.5);
+  color: $light;
+}

@@ -106,7 +106,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Navbar logout={logout} />
+      {/* <Navbar logout={logout} /> */}
       <Routes {...props} />
     </>
   );

@@ -1,5 +1,6 @@
+@import "../../variables.scss";
 .landingPage {
-  background-image: url("https://placekitten.com/800/600");
+  background-image: url("../../assets/images/splash.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -15,11 +16,15 @@
     width: 80vw;
     padding: 40px;
     height: 80vh;
-    background-color: #2f4f4fab;
-    color: white;
+    background-color: rgba($primary, 0.9);
+    color: $light;
 
     input {
       height: 40px;
+    }
+
+    .button {
+      @include primaryButton;
     }
   }
 }

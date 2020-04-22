@@ -19,14 +19,14 @@ code {
   display: block;
   padding: 10px;
   color: black;
-  background-color: dodgerblue;
+  background-color: rgb(75, 106, 114);
   // margin-top: auto;
-  border: 2px solid dodgerblue;
+  border: 2px solid rgb(88, 111, 117);
 
   &:hover,
   &:focus {
-    background-color: #0b4a8a;
-    border-color: #0b4a8a;
+    background-color: rgb(88, 111, 117);
+    border-color: rgb(88, 111, 117);
     cursor: pointer;
     color: white;
   }

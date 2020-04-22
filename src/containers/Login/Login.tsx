@@ -49,7 +49,7 @@ const Login: React.FC<Props> = ({ setUser }) => {
           value={password}
           placeholder="Password"
         />
-        <button className="button secondary" onClick={login}>
+        <button className={styles.button} onClick={login}>
           Sign in
         </button>
       </div>

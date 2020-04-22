@@ -4,7 +4,7 @@ import { Router, Redirect } from "@reach/router";
 
 import SignUp from "../SignUp";
 import Login from "../Login";
-import LandingPage from "../../components/LandingPage";
+import LandingPage from "../LandingPage";
 import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
@@ -15,7 +15,7 @@ interface Grid {
 interface Props {
   user: firebase.User | null;
   setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
-  grid: Grid |null;
+  grid: Grid | null;
   color: string;
   setGrid: React.Dispatch<React.SetStateAction<Grid | null>>;
   allPatterns: Grid[];
