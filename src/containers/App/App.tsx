@@ -5,21 +5,27 @@ import firebase, { firestore } from "../../firebase";
 import Navbar from "../../components/Navbar";
 import Routes from "../Routes";
 // import DropDown from "../../components/DropDown/DropDown";
-import { navigate } from "@reach/router";
+import { navigate, redirectTo } from "@reach/router";
 
-const App = () => {
+interface grid {
+  grid: string[][];
+  name: string;
+}
+
+const App: React.FC = () => {
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
   const [color, setColor] = useState("#ffffff");
-  const [user, setUser] = useState(null);
 
-  const [grid, setGrid] = useState({ grid: [[]], name: "" });
-  const [allPatterns, setAllPatterns] = useState([]);
+  const [user, setUser] = useState<firebase.User | null>(null);
 
-  const generateGridArray = () => {
-    const y = [];
+  const [grid, setGrid] = useState<grid | null>(null);
+  const [allPatterns, setAllPatterns] = useState<grid[]>([]);
+
+  const generateGridArray = (): void => {
+    const y: string[][] = [];
     for (let i = 0; i < columns; i++) {
-      const x = [];
+      const x: string[] = [];
       for (let i = 0; i < rows; i++) {
         x.push("#ffffff");
       }
@@ -28,26 +34,26 @@ const App = () => {
     setGrid({ grid: y, name: "" });
   };
 
-  const getUser = () => {
+  const getUser = (): void => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        // navigate("dash");
+        navigate("/p/dash");
       } else {
         setUser(null);
       }
     });
   };
 
-  const logout = () => {
+  const logout = (): void => {
     firebase
       .auth()
       .signOut()
       .then(() => {
-        navigate("/");
+        navigate("/login");
       });
   };
-  const getAllPatterns = useCallback(() => {
+  const getAllPatterns = useCallback((): void => {
     if (user) {
       firestore
         .collection("users")
@@ -55,9 +61,10 @@ const App = () => {
         .collection("patterns")
         .get()
         .then((querySnapshot) => {
-          const allPatterns = [];
+          const allPatterns: grid[] = [];
           querySnapshot.forEach((doc) => {
             const pattern = doc.data().pattern;
+
             const columns = [];
             for (const column in pattern) {
               columns.push(pattern[column]);
@@ -72,11 +79,11 @@ const App = () => {
     }
   }, [user]);
 
-  useEffect(() => {
+  useEffect((): void => {
     getUser();
-  });
+  }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     getAllPatterns();
   }, [getAllPatterns]);
 

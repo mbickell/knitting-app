@@ -3,8 +3,19 @@ import styles from "./Columns.module.scss";
 
 import Column from "../../components/Column";
 
-const Columns = ({ grid, color, setGrid }) => {
-  const generateNumbers = () => {
+interface Grid {
+  grid: string[][];
+  name: string;
+}
+
+interface Props {
+  grid: Grid;
+  color: string;
+  setGrid: React.Dispatch<React.SetStateAction<Grid | null>>;
+}
+
+const Columns: React.FC<Props> = ({ grid, color, setGrid }) => {
+  const generateNumbers = (): JSX.Element[] => {
     return grid.grid[0].map((cell, index, array) => (
       <p key={array.length - index} className={styles.marker}>
         {array.length - index}

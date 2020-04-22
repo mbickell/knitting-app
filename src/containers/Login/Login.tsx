@@ -4,13 +4,19 @@ import styles from "./Login.module.scss";
 import firebase from "../../firebase";
 
 import Input from "../../components/Input";
-import { navigate } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
+import { FirebaseError } from "firebase";
 
-const Login = ({ setUser }) => {
+interface Props {
+  setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
+  path?: typeof RouteComponentProps;
+}
+
+const Login: React.FC<Props> = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = () => {
+  const login = (): void => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -21,7 +27,7 @@ const Login = ({ setUser }) => {
       .then(() => {
         navigate("/dash");
       })
-      .catch(function(error) {
+      .catch((error: FirebaseError) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;

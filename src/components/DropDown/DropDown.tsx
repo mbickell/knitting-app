@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styles from "./DropDown.module.scss";
 
-const DropDown = ({ children }) => {
+const DropDown: React.FC = ({ children }) => {
   const [visible, toggleDrop] = useState(false);
 
-  const display = visible ? styles.show : "";
+  const display: string = visible ? styles.show : "";
 
   return (
     <div className={styles.dropdown}>
