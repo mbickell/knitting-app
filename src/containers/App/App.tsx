@@ -53,7 +53,7 @@ const App: React.FC = () => {
         navigate("/login");
       });
   };
-  const getAllPatterns = useCallback(() => {
+  const getAllPatterns = useCallback((): void => {
     if (user) {
       firestore
         .collection("users")
@@ -79,11 +79,11 @@ const App: React.FC = () => {
     }
   }, [user]);
 
-  useEffect(() => {
+  useEffect((): void => {
     getUser();
   }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     getAllPatterns();
   }, [getAllPatterns]);
 

@@ -9,7 +9,7 @@ import { FirebaseError } from "firebase";
 
 interface Props {
   setUser: React.Dispatch<React.SetStateAction<firebase.User | null>>;
-  path: typeof RouteComponentProps;
+  path?: typeof RouteComponentProps;
 }
 
 const Login: React.FC<Props> = ({ setUser }) => {

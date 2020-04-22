@@ -3,7 +3,20 @@ import React from "react";
 
 import Square from "../Square";
 
-const Column = ({ column, color, columnIndex, grid, setGrid }) => {
+interface Grid {
+  grid: string[][];
+  name: string;
+}
+
+interface Props {
+  column: string[];
+  color: string;
+  columnIndex: number;
+  grid: Grid;
+  setGrid: React.Dispatch<React.SetStateAction<Grid>>;
+}
+
+const Column: React.FC<Props> = ({ column, color, columnIndex, grid, setGrid }) => {
   return (
     <>
       {column.map((type, index, column) => (

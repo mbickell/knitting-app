@@ -34,10 +34,9 @@ interface SaveableGrid {
 }
 
 const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, getAllPatterns, ...other }) => {
-  // const { grid, color, user, setGrid, allPatterns, getAllPatterns, ...other: } = props;
   const [name, setName] = useState("");
 
-  const savePattern = () => {
+  const savePattern = (): void => {
     let saveableGrid: SaveableGrid = {};
 
     if (user && grid) {
