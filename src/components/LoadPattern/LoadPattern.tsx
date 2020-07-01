@@ -15,11 +15,11 @@ const LoadPattern: React.FC<Props> = ({ allPatterns, setGrid }) => {
   return (
     <>
       <h2>Load pattern</h2>
-      <DropDown>
-        {allPatterns.map((pattern) => (
-          <p key={pattern.name} onClick={() => setGrid(pattern)}>
+      <DropDown setGrid={setGrid} allPatterns={allPatterns}>
+        {allPatterns.map((pattern, position) => (
+          <option key={pattern.name} value={position}>
             {pattern.name}
-          </p>
+          </option>
         ))}
       </DropDown>
     </>

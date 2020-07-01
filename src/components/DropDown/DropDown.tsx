@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import styles from "./DropDown.module.scss";
 
-const DropDown: React.FC = ({ children }) => {
+interface Grid {
+  grid: string[][];
+  name: string;
+}
+
+interface Props {
+  allPatterns: Grid[];
+  setGrid: React.Dispatch<React.SetStateAction<Grid | null>>;
+}
+
+const DropDown: React.FC<Props> = ({ children, setGrid, allPatterns }) => {
   const [visible, toggleDrop] = useState(false);
 
   const display: string = visible ? styles.show : "";
 
   return (
     <div className={styles.dropdown}>
-      <button onClick={() => toggleDrop(!visible)}>Dropdown</button>
-      <div id="myDropdown" className={`${styles.content} ${display}`}>
+      <select name="patterns" id="patterns" onChange={event => setGrid(allPatterns[parseInt(event.target.value)])}>
         {children}
-      </div>
+      </select>
     </div>
   );
 };
