@@ -77,8 +77,7 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
         </div>
       </section>
 
-      <section>
-        <h2>Dashboard</h2>
+      <section className={styles.centerGrid}>
         <div className={styles.grid}>{grid ? <Columns grid={grid} color={color} setGrid={setGrid} /> : null}</div>
       </section>
     </div>

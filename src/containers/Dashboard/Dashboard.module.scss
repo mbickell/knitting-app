@@ -26,11 +26,18 @@
     }
   }
 
-  .grid {
+  .centerGrid {
     display: flex;
-    margin-top: $base-spacing * 2;
-    max-width: 100%;
     justify-content: center;
-    // width: 80vw;
+    align-items: center;
+    width: 75%;
+
+    .grid {
+      display: flex;
+      margin-top: $base-spacing * 2;
+      max-width: 100%;
+      justify-content: center;
+      // width: 80vw;
+    }
   }
 }
