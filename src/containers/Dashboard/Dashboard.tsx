@@ -49,7 +49,7 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
         .collection("patterns")
         .doc(name)
         .set({
-          pattern: saveableGrid,
+          pattern: saveableGrid
         })
         .then(() => {
           getAllPatterns();
@@ -59,19 +59,21 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
 
   return (
     <div className={styles.dashboard}>
+      <section className={styles.options}>
+        <div className={styles.form}>
+          <CreatePattern {...other} color={color} />
+        </div>
+
+        <div className={styles.form}>
+          <SavePattern name={name} setName={setName} savePattern={savePattern} />
+        </div>
+
+        <div className={styles.form}>
+          <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
+        </div>
+      </section>
+
       <h2>Dashboard</h2>
-      <div className={styles.form}>
-        <CreatePattern {...other} color={color} />
-      </div>
-
-      <div className={styles.form}>
-        <SavePattern name={name} setName={setName} savePattern={savePattern} />
-      </div>
-
-      <div className={styles.form}>
-        <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
-      </div>
-
       <div className={styles.grid}>{grid ? <Columns grid={grid} color={color} setGrid={setGrid} /> : null}</div>
     </div>
   );

@@ -20,19 +20,19 @@ const CreatePattern: React.FC<Props> = ({ setColumns, columns, setRows, rows, co
       <Input
         placeholder="No. of columns"
         type="number"
-        callback={(event) => setColumns(parseInt(event.target.value))}
+        callback={event => setColumns(parseInt(event.target.value))}
         value={`${columns}`}
       />
       <p>Set rows: </p>
       <Input
         placeholder="No. of rows"
         type="number"
-        callback={(event) => setRows(parseInt(event.target.value))}
+        callback={event => setRows(parseInt(event.target.value))}
         value={`${rows}`}
       />
       <button onClick={generateGridArray}>generate columns</button>
       <p>Pick color: </p>
-      <Input placeholder="color" type="color" callback={(event) => setColor(event.target.value)} value={color} />
+      <Input placeholder="color" type="color" callback={event => setColor(event.target.value)} value={color} />
     </>
   );
 };
