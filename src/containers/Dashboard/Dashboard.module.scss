@@ -1,17 +1,28 @@
 @import "../../variables.scss";
 
 .dashboard {
-  background-color: $light;
-  min-height: 100vh;
+  display: flex;
 
-  .options {
+  .sidebar {
     background-color: $primary;
     color: $light;
     padding: $base-spacing * 4;
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .form {
-      display: flex;
-      flex-direction: column;
+      width: 100%;
+      // display: flex;
+      // flex-direction: column;
+    }
+
+    .signOut {
+      button {
+        @include primaryButton;
+      }
     }
   }
 

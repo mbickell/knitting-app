@@ -1,5 +1,5 @@
 import React from "react";
-// import styles from "./CreatePattern.module.scss";
+import styles from "./CreatePattern.module.scss";
 
 import Input from "../Input";
 
@@ -15,7 +15,7 @@ interface Props {
 
 const CreatePattern: React.FC<Props> = ({ setColumns, columns, setRows, rows, color, setColor, generateGridArray }) => {
   return (
-    <>
+    <section className={styles.inputs}>
       <p>Set columns: </p>
       <Input
         placeholder="No. of columns"
@@ -33,7 +33,7 @@ const CreatePattern: React.FC<Props> = ({ setColumns, columns, setRows, rows, co
       <button onClick={generateGridArray}>generate columns</button>
       <p>Pick color: </p>
       <Input placeholder="color" type="color" callback={event => setColor(event.target.value)} value={color} />
-    </>
+    </section>
   );
 };
 

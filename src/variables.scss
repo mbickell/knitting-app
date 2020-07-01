@@ -16,8 +16,9 @@ $base-spacing: 5px;
 
   &:hover,
   &:focus {
-    background-color: $accent - 10;
-    border-color: $accent - 10;
+    background-color: darken($color: $accent, $amount: 10);
+    // background-color: $accent - 10;
+    border-color: darken($color: $accent, $amount: 10);
     cursor: pointer;
     color: $light;
   }

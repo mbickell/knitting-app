@@ -41,11 +41,11 @@ const Login: React.FC<Props> = ({ setUser }) => {
       <h2>Login</h2>
       <div className={styles.form}>
         <label>Email:</label>
-        <Input type="email" callback={(event) => setEmail(event.target.value)} value={email} placeholder="Email" />
+        <Input type="email" callback={event => setEmail(event.target.value)} value={email} placeholder="Email" />
         <label>Password:</label>
         <Input
           type="password"
-          callback={(event) => setPassword(event.target.value)}
+          callback={event => setPassword(event.target.value)}
           value={password}
           placeholder="Password"
         />

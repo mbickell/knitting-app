@@ -27,13 +27,14 @@ interface Props {
   rows: number;
   setColor: React.Dispatch<React.SetStateAction<string>>;
   generateGridArray: () => void;
+  logout: () => void;
 }
 
 interface SaveableGrid {
   [index: string]: { column: string[]; index: number };
 }
 
-const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, getAllPatterns, ...other }) => {
+const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, getAllPatterns, logout, ...other }) => {
   const [name, setName] = useState("");
 
   const savePattern = (): void => {
@@ -59,7 +60,10 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
 
   return (
     <div className={styles.dashboard}>
-      <section className={styles.options}>
+      <section className={styles.sidebar}>
+        <div className={styles.form}>
+          <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
+        </div>
         <div className={styles.form}>
           <CreatePattern {...other} color={color} />
         </div>
@@ -68,13 +72,15 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
           <SavePattern name={name} setName={setName} savePattern={savePattern} />
         </div>
 
-        <div className={styles.form}>
-          <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
+        <div className={styles.signOut}>
+          <button onClick={logout}>Sign out</button>
         </div>
       </section>
 
-      <h2>Dashboard</h2>
-      <div className={styles.grid}>{grid ? <Columns grid={grid} color={color} setGrid={setGrid} /> : null}</div>
+      <section>
+        <h2>Dashboard</h2>
+        <div className={styles.grid}>{grid ? <Columns grid={grid} color={color} setGrid={setGrid} /> : null}</div>
+      </section>
     </div>
   );
 };

@@ -26,6 +26,7 @@ interface Props {
   rows: number;
   setColor: React.Dispatch<React.SetStateAction<string>>;
   generateGridArray: () => void;
+  logout: () => void;
 }
 
 const Routes: React.FC<Props> = ({ setUser, user, ...other }) => {
