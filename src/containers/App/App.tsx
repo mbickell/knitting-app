@@ -75,6 +75,7 @@ const App: React.FC = () => {
           });
 
           setAllPatterns(allPatterns);
+          setGrid(allPatterns[0]);
         });
     }
   }, [user]);
