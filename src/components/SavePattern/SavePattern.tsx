@@ -12,6 +12,7 @@ interface Props {
 const SavePattern: React.FC<Props> = ({ name, setName, savePattern }) => {
   return (
     <section className={styles.inputs}>
+      <h2>Save pattern</h2>
       <p>Give a name to your pattern: </p>
       <Input type="text" placeholder="Pattern name" callback={event => setName(event.target.value)} value={name} />
       <button onClick={savePattern}>Save pattern</button>

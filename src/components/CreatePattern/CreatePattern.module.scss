@@ -1,6 +1,9 @@
 @import "../../variables.scss";
 
 .inputs {
+  p {
+    margin-top: $base-spacing * 2;
+  }
   button {
     margin-top: $base-spacing * 2;
     @include secondaryButton;

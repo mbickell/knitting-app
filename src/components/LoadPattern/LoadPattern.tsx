@@ -1,5 +1,5 @@
 import React from "react";
-// import styles from "./LoadPattern.module.scss";
+import styles from "./LoadPattern.module.scss";
 import DropDown from "../DropDown/DropDown";
 
 interface Grid {
@@ -13,7 +13,7 @@ interface Props {
 
 const LoadPattern: React.FC<Props> = ({ allPatterns, setGrid }) => {
   return (
-    <>
+    <section className={styles.dropDown}>
       <h2>Load pattern</h2>
       <DropDown setGrid={setGrid} allPatterns={allPatterns}>
         {allPatterns.map((pattern, position) => (
@@ -22,7 +22,7 @@ const LoadPattern: React.FC<Props> = ({ allPatterns, setGrid }) => {
           </option>
         ))}
       </DropDown>
-    </>
+    </section>
   );
 };
 

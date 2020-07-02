@@ -16,6 +16,7 @@ interface Props {
 const CreatePattern: React.FC<Props> = ({ setColumns, columns, setRows, rows, color, setColor, generateGridArray }) => {
   return (
     <section className={styles.inputs}>
+      <h2>Create pattern</h2>
       <p>Set columns: </p>
       <Input
         placeholder="No. of columns"
