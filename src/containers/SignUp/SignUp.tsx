@@ -37,33 +37,37 @@ const SignUp: React.FC<typeof RouteComponentProps> = () => {
   };
 
   return (
-    <>
-      <h2>Sign up</h2>
-      <div className={styles.form}>
-        <label>Email:</label>
-        <Input
-          type="email"
-          callback={(event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
-          value={email}
-          placeholder="Email"
-        />
-        <label>Password:</label>
-        <Input
-          type="password"
-          callback={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
-          value={password}
-          placeholder="Password"
-        />
-        <label>Confirm password:</label>
-        <Input
-          type="password"
-          callback={(event: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(event.target.value)}
-          value={confirmedPassword}
-          placeholder="Confrim password"
-        />
-        <button onClick={createUser}>Sign up</button>
+    <section className={styles.signUp}>
+      <div className={styles.content}>
+        <h2>Sign up</h2>
+        <div className={styles.form}>
+          <label>Email:</label>
+          <Input
+            type="email"
+            callback={(event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
+            value={email}
+            placeholder="Email"
+          />
+          <label>Password:</label>
+          <Input
+            type="password"
+            callback={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
+            value={password}
+            placeholder="Password"
+          />
+          <label>Confirm password:</label>
+          <Input
+            type="password"
+            callback={(event: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(event.target.value)}
+            value={confirmedPassword}
+            placeholder="Confrim password"
+          />
+        </div>
+        <button className={styles.button} onClick={createUser}>
+          Sign up
+        </button>
       </div>
-    </>
+    </section>
   );
 };
 
