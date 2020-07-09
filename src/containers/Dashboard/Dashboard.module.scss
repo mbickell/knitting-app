@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75%;
+    min-width: 75%;
 
     .grid {
       display: flex;
@@ -54,6 +54,7 @@
 
     .sidebar {
       width: 100%;
+      height: 100%;
       position: fixed;
       transition: 0.5s;
     }
@@ -68,7 +69,15 @@
     }
 
     .centerGrid {
-      width: 100%;
+      min-width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .dashboard {
+    .centerGrid {
+      min-width: unset;
     }
   }
 }
