@@ -64,6 +64,7 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
         <div className={styles.form}>
           <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
         </div>
+
         <div className={styles.form}>
           <CreatePattern {...other} color={color} />
         </div>
