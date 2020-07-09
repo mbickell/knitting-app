@@ -8,6 +8,9 @@ import CreatePattern from "../../components/CreatePattern";
 import Columns from "../Columns";
 import LoadPattern from "../../components/LoadPattern";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+
 interface Grid {
   grid: string[][];
   name: string;
@@ -36,6 +39,7 @@ interface SaveableGrid {
 
 const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, getAllPatterns, logout, ...other }) => {
   const [name, setName] = useState("");
+  const [open, setOpen] = useState(false);
 
   const savePattern = (): void => {
     let saveableGrid: SaveableGrid = {};
@@ -60,7 +64,17 @@ const Dashboard: React.FC<Props> = ({ grid, color, user, setGrid, allPatterns, g
 
   return (
     <div className={styles.dashboard}>
-      <section className={styles.sidebar}>
+      {window.innerWidth >= 769 ? null : (
+        <FontAwesomeIcon
+          icon={faBars}
+          className={`${styles.icon} ${open ? styles.hide : ""}`}
+          onClick={() => setOpen(true)}
+        />
+      )}
+      <section className={`${styles.sidebar} ${open ? "" : styles.hide}`}>
+        {window.innerWidth >= 769 ? null : (
+          <FontAwesomeIcon icon={faTimes} className={open ? "" : styles.hide} onClick={() => setOpen(false)} />
+        )}
         <div className={styles.form}>
           <LoadPattern allPatterns={allPatterns} setGrid={setGrid} />
         </div>
