@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./DropDown.module.scss";
 
 interface Grid {
@@ -12,10 +12,6 @@ interface Props {
 }
 
 const DropDown: React.FC<Props> = ({ children, setGrid, allPatterns }) => {
-  const [visible, toggleDrop] = useState(false);
-
-  const display: string = visible ? styles.show : "";
-
   return (
     <div className={styles.dropdown}>
       <select name="patterns" id="patterns" onChange={event => setGrid(allPatterns[parseInt(event.target.value)])}>

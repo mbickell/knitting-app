@@ -3,11 +3,11 @@ import React from "react";
 import { Router, Redirect } from "@reach/router";
 
 import SignUp from "../SignUp";
-import Login from "../Login";
 import LandingPage from "../LandingPage";
 import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import ResetPassword from "../ResetPassword";
+import ManageAccount from "../ManageAccount";
 
 interface Grid {
   grid: string[][];
@@ -37,6 +37,7 @@ const Routes: React.FC<Props> = ({ setUser, user, ...other }) => {
       <LandingPage path="login" setUser={setUser} />
       <SignUp path="sign-up" />
       <ResetPassword path="reset-password" />
+      <ManageAccount path="manage-account" setUser={setUser} />
       <PrivateRoutes path="p" {...other}>
         <Dashboard path="dash" user={user} {...other} />
       </PrivateRoutes>

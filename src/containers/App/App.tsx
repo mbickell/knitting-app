@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 // import styles from "./App.module.scss";
 import firebase, { firestore } from "../../firebase";
 
-import Navbar from "../../components/Navbar";
+// import Navbar from "../../components/Navbar";
 import Routes from "../Routes";
 // import DropDown from "../../components/DropDown/DropDown";
-import { navigate, redirectTo } from "@reach/router";
+import { navigate } from "@reach/router";
 
 interface grid {
   grid: string[][];
