@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.contact {
+  @include primaryButton;
+  width: unset;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}

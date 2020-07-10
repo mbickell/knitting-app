@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-// import styles from "./App.module.scss";
+import styles from "./App.module.scss";
 import firebase, { firestore } from "../../firebase";
 
 // import Navbar from "../../components/Navbar";
@@ -108,6 +108,9 @@ const App: React.FC = () => {
   return (
     <>
       <Routes {...props} />
+      <a href="mailto:matthewbickell@hotmail.com" className={styles.contact}>
+        Contact me
+      </a>
     </>
   );
 };
