@@ -13,7 +13,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ setUser }) => {
     <article className={styles.landingPage}>
       <div className={styles.content}>
         <Login setUser={setUser} />
-        <Link className={styles.button} to="../sign-up">
+        <Link className={styles.button} to="/sign-up">
           Sign up
         </Link>
       </div>

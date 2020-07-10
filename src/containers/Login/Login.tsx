@@ -4,7 +4,7 @@ import styles from "./Login.module.scss";
 import firebase from "../../firebase";
 
 import Input from "../../components/Input";
-import { navigate, RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps, Link } from "@reach/router";
 import { FirebaseError } from "firebase";
 
 interface Props {
@@ -37,7 +37,7 @@ const Login: React.FC<Props> = ({ setUser }) => {
   };
 
   return (
-    <article>
+    <article className={styles.login}>
       <h2>Login</h2>
       <div className={styles.form}>
         <label>Email:</label>
@@ -53,6 +53,7 @@ const Login: React.FC<Props> = ({ setUser }) => {
           Sign in
         </button>
       </div>
+      <Link to="/reset-password">Forgotten password?</Link>
     </article>
   );
 };

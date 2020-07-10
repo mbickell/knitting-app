@@ -7,6 +7,7 @@ import Login from "../Login";
 import LandingPage from "../LandingPage";
 import Dashboard from "../Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import ResetPassword from "../ResetPassword";
 
 interface Grid {
   grid: string[][];
@@ -35,7 +36,7 @@ const Routes: React.FC<Props> = ({ setUser, user, ...other }) => {
       <Redirect noThrow from="/" to="/login" />
       <LandingPage path="login" setUser={setUser} />
       <SignUp path="sign-up" />
-      <Login path="unused" setUser={setUser} />
+      <ResetPassword path="reset-password" />
       <PrivateRoutes path="p" {...other}>
         <Dashboard path="dash" user={user} {...other} />
       </PrivateRoutes>

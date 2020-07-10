@@ -10,16 +10,17 @@ const SignUp: React.FC<typeof RouteComponentProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  const [error, setError] = useState("");
 
   const createUser = (): void => {
     if (!(email.includes("@") && email.includes(".", email.indexOf("@")))) {
-      alert("Please ensure you have entered your email correctly.");
+      setError("Please ensure you have entered your email correctly.");
     } else if (password !== confirmedPassword) {
-      alert("Please ensure your passwords match.");
+      setError("Please ensure your passwords match.");
       setPassword("");
       setConfirmedPassword("");
     } else if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!?£$%*&@]{8,}$/)) {
-      alert(
+      setError(
         "Your password should contain 1 number, 1 uppercase and 1 lowercase character and be at least 8 characters long."
       );
       setPassword("");
@@ -36,10 +37,10 @@ const SignUp: React.FC<typeof RouteComponentProps> = () => {
         })
         .catch((error: FirebaseError) => {
           // Handle Errors here.
-          const errorCode = error.code;
+          // const errorCode = error.code;
           const errorMessage = error.message;
-          alert(errorCode);
-          alert(errorMessage);
+          // alert(errorCode);
+          setError(errorMessage);
         });
     }
   };
@@ -75,6 +76,7 @@ const SignUp: React.FC<typeof RouteComponentProps> = () => {
               Your password should contain 1 number, 1 uppercase and 1 lowercase character and be at least 8 characters
               long.
             </p>
+            <p className={styles.error}>{error}</p>
           </div>
           <button className={styles.button} onClick={createUser}>
             Sign up

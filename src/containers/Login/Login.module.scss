@@ -1,17 +1,26 @@
 @import "../../variables.scss";
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 100%;
+.login {
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
 
-  label {
-    margin: 20px 0 10px 0;
+    label {
+      margin: 20px 0 10px 0;
+    }
+
+    .button {
+      margin-top: 20px;
+      @include secondaryButton;
+    }
   }
+  a {
+    color: $light;
 
-  .button {
-    margin-top: 20px;
-    @include secondaryButton;
+    &:visited {
+      color: $light;
+    }
   }
 }
