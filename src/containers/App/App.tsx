@@ -35,7 +35,7 @@ const App: React.FC = () => {
   };
 
   const getUser = (): void => {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
         navigate("/p/dash");
@@ -60,9 +60,9 @@ const App: React.FC = () => {
         .doc(user.uid)
         .collection("patterns")
         .get()
-        .then(querySnapshot => {
+        .then((querySnapshot) => {
           const allPatterns: grid[] = [];
-          querySnapshot.forEach(doc => {
+          querySnapshot.forEach((doc) => {
             const pattern = doc.data().pattern;
 
             const columns = [];
@@ -71,7 +71,7 @@ const App: React.FC = () => {
             }
 
             columns.sort((a, b) => a.index - b.index);
-            allPatterns.push({ name: doc.id, grid: columns.map(column => column.column) });
+            allPatterns.push({ name: doc.id, grid: columns.map((column) => column.column) });
           });
 
           setAllPatterns(allPatterns);
